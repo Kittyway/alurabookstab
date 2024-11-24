@@ -1,0 +1,254 @@
+.cabeçalho__menu-hamburguer {
+    width: 24px;
+    height: 24px;
+    background-image: url("./../img/Menu.svg");
+    display: inline-block;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+
+/*usamqos varios combinadores no css,~  procura outro elementop que estivesse em seguida dele e o > procura oq esta dentro dele */
+.container__botao:checked~.container__rotulo>.cabeçalho__menu-hamburguer {
+
+    background-image: url(./../img/Menu\ Aberto.svg);
+}
+
+.container__botao:checked~.container__rotulo {
+    background: var(--azul-degrade);
+}
+
+.cabecalho {
+    background-color: var(--branco);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+}
+
+.container {
+    display: flex;
+    align-items: center;
+}
+
+.container__imagem {
+    padding: 1em;
+}
+
+.lista-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    width: 60vw;
+    border-radius: 0 0 20px 20px;
+    background-color: var(--branco);
+}
+
+.container__botao:checked~.lista-menu {
+    display: block;
+}
+
+.lista-menu__titulo,
+.lista-menu__item {
+    padding: 1em;
+
+}
+
+.lista-menu__titulo {
+    color: var(--laranja);
+    font-weight: 700;
+}
+
+.lista-menu__link {
+    background: var(--azul-degrade);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-transform: uppercase;
+}
+
+.container__botao {
+    display: none;
+}
+
+/*Media query, usado para aplicar em estilos de determinadas tela, como está aqui o tamanho da tela do tablet.
+é obrigatorio colocar o @, para identificar o query.
+minimo do tamanho da tema seja o numero que esta ali.
+max-width é útil para adaptar layouts desktop a dispositivos menores;
+min-width é ideal para começar com um layout mobile e expandir para telas maiores;
+
+Você também pode criar media queries complexas com operadores lógicos como and (traduzindo para português “e”), combinando diferentes condições.
+
+Por exemplo: @media screen and (min-width: 768px) aplica estilos apenas em dispositivos com largura mínima de 768 pixels.*/
+
+.container__titulo {
+    display: none;
+}
+
+.opções {
+    display: none;
+}
+
+.container__texto {
+    display: none;
+}
+
+/*aqui estamos adicionando que o codigo vai sumir qnd n estiver em 1024px*/
+.lista-rodapé {
+    display: none;
+}
+
+@media screen and (min-width: 1024px) {
+
+    /*aqui esta todo ocepp q vai aparecer no tablet*/
+
+    .container__titulo,
+    .container__titulo--negrito {
+        font-family: var(--fonte-secundario);
+        font-size: 30px;
+    }
+
+    .container__titulo {
+        font-weight: 400;
+        display: block;
+    }
+
+    .container__titulo--negrito {
+        font-weight: 700;
+    }
+
+    .opções {
+        display: flex;
+    }
+
+    /*aqui deixamos espaçamento dos lados com o padd e no text foi para deixar as levras maiusculas*/
+    .opções__item {
+        padding: 0 1em;
+        text-transform: uppercase;
+    }
+
+    .opções__link {
+        text-decoration: none;
+        color: var(--preto);
+    }
+
+
+    /*criamos mais um nome da classe que estava o icon de favoritos e adicionamos para não aparecer quando a tela estiver grande, caso ao contrario, adicionariamos no header e nao no query, para aparecer na tela grande e nn na pequena, como os exemplos la em cima do none.*/
+    .container__imagem-transparente {
+        display: none;
+    }
+
+    .cabeçalho__menu-hamburguer {
+        display: none;
+    }
+
+    .opções__botão:checked~.lista-menu {
+        display: block;
+        width: auto;
+    }
+
+    .opções__botão {
+        display: none;
+    }
+
+    /*Então, o que aconteceu em .container_botao:checked~.container__rotulo? Ele procurou outro elemento que tivesse a classe .container__rotulo e que fosse depois do .container__botao, então encontrou o label.
+    
+    Já o sinal > procura algo que está dentro desse elemento, ou seja, temos um label e dentro dele o cabeçalho__menu-hamburguer.
+
+Também vimos aqui a pseudo classe :checked, ela detecta se o input está marcado (no caso, clicado).
+
+isso serve para opção tbm, só mudar os nome q estão, mas é as mesdma funçaõ para os codigos de baixo.*/
+
+    .opções__botão:checked ~ .opções__rotulo > .opções__item {
+        background: var(--azul-degrade);
+        color: var(--branco);
+    }
+
+    .opções__item {
+        padding: 2em 1em;
+    }
+
+    .lista-menu__item:hover {
+        background: var(--azul-degrade);
+    }
+
+
+    /*Tivemos que usar o -webkit-text-fill-color porque lá no início do projeto, para colocar essa cor azul degradê, tivemos que inserir um background e depois associar ele à fonte.
+
+    E quando usamos o -webkit-text-fill-color, tínhamos definido como transparente. Então, ele não aplicava cor nenhuma, além daquele background que estava aplicado. Após definir uma cor de preenchimento pro -webkit-text-fill-color, ele passou a funcionar.*/
+
+    .lista-menu__item:hover > .lista-menu__item {
+        -webkit-text-fill-color: var(--branco);
+        text-decoration: none;
+    }
+
+    /*separa pelo mesmo tamanho no justify, faz espaçamento entre ele e as borda......*/
+
+    .rodapé {
+        display: flex;
+        justify-content: space-around;
+    }
+
+    .lista-rodapé {
+        display: block;
+    }
+
+    .lista-rodapé__item {
+        display: flex;
+        align-items: center;
+        margin: 0.6em 0;
+    }
+
+    /*text decoration: none, serve para tirar aquele aspecto de link com a barrinha embaixo*/
+    .lista-rodapé__link {
+        color: var(--cinza);
+        text-decoration: none;
+        margin-left: 0.6em;
+    }
+
+    .lista-rodapé_titulo {
+        font-size: 14px;
+        color: var(--cinza-color);
+    }
+
+    .rodapé_titulo {
+        font-size: 24px;
+    }
+}
+
+
+@media screen and (min-width: 1728px) {
+    .container__link {
+        display: flex;
+        align-items: center;
+        text-decoration: none;
+        color: var(--preto);
+    }
+
+    .cabecalho {
+        padding: o 2em;
+    }
+
+    /*por conta do auto ele tenta preencher tudo que esta faltando no comando, no right (esquerda) ele jogou todo o conteudo para esquerda que faltava.*/
+    .opções {
+        margin-right: auto;
+    }
+
+    /*lá em cimna adicionamos o none para nao aparecer qnd nn fosse em tal tamanho, mas para aparecer dps dessa função, precisei colocar o dis0play block*/
+    .container__texto {
+        display: block;
+    }
+
+    /*aqui é o rodapé  do desktop, q n funcionou no outro css*/
+
+    .lista-rodapé {
+        border-left: 1px solid var(--cinza-color);
+        padding-left: 1em;
+    }
+
+    /*fizemos um espaçamento em cima de 3em e 0 dos lados*/
+    .rodapé {
+        padding: 3em 0;
+    }
+
+}
